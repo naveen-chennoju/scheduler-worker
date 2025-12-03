@@ -1,0 +1,18 @@
+# Java
+*.class
+*.jar
+*.war
+*.iml
+target/
+
+# IDE
+.idea/
+*.ipr
+*.iws
+*.vscode/
+
+# Logs
+*.log
+
+# OS
+.DS_Store
