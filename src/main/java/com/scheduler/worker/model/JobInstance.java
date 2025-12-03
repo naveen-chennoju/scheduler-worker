@@ -1,18 +1,21 @@
 package com.scheduler.worker.model;
 
 import jakarta.persistence.*;
+import lombok.Data;
 
 import java.time.LocalDateTime;
+import java.util.UUID;
 
+@Data
 @Entity
-@Table(name = "job_instances")
+@Table(name = "job_instance")
 public class JobInstance {
 
     @Id
     @GeneratedValue(strategy = GenerationType.IDENTITY)
-    private Long id;
+    private UUID id;
 
-    private Long jobId;
+    private UUID jobId;
 
     private LocalDateTime scheduledTime;
 
@@ -22,8 +25,20 @@ public class JobInstance {
 
     private String status;   // PENDING, RUNNING, SUCCESS, FAILED
 
-    private String logs;
-
     private Integer retryCount;
+
+
+    @Override
+    public String toString() {
+        return "Job{" +
+                "id=" + id +
+                ", jobId='" + jobId + '\'' +
+                ", scheduledTime='" + scheduledTime + '\'' +
+                ", pickedAt=" + pickedAt +
+                ", completedAt=" + completedAt +
+                ", status='" + status + '\'' +
+                ", retryCount=" + retryCount +
+                '}';
+    }
 }
 
