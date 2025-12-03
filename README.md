@@ -1,30 +1,12 @@
-                  ┌───────────────────┐
-                  │  Scheduler-Core   │
-                  │ Creates JobInstances │
-                  └─────────┬─────────┘
-                            │
-                            ▼
-                  ┌───────────────────┐
-                  │ JobInstance Table │
-                  │  (status: PENDING)│
-                  └─────────┬─────────┘
-                            │
-                            ▼
-          ┌─────────────────────────────────┐
-          │         Worker Module           │
-          │ - Polls PENDING jobs            │
-          │ - Executes job                  │
-          │ - Updates status & logs        │
-          └─────────────────────────────────┘
-                            │
-                            ▼
-                  ┌───────────────────┐
-                  │ Updated JobInstance│
-                  │ SUCCESS / FAILED  │
-                  └───────────────────┘
+# Scheduler-Worker Module
+## Project Overview
 
-Potential Issues if multiple workers run:
-- Duplicate job execution
-- Race conditions on status updates
-- Lost or overwritten logs
-- Database conflicts
+Step 1. This repository contains the worker module of a distributed job scheduler:
+
+Step 2. Polls the database for PENDING job instances created by the scheduler-core module.
+
+Step 3. Executes each job sequentially and updates its status in the database.
+
+Step 4. Tracks execution logs and updates the job instance to SUCCESS or FAILED.
+
+_Currently, this worker is designed for a single worker instance. Multi-worker execution issues are being investigated._
